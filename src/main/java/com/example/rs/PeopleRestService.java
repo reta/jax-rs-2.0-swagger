@@ -2,7 +2,6 @@ package com.example.rs;
 
 import java.util.Collection;
 
-import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
@@ -29,7 +28,11 @@ import com.wordnik.swagger.annotations.ApiResponses;
 @Path( "/people" ) 
 @Api( value = "/people", description = "Manage people" )
 public class PeopleRestService {
-	@Inject private PeopleService peopleService;
+	private PeopleService peopleService;
+	
+	public PeopleRestService( final PeopleService peopleService ) {
+		this.peopleService = peopleService;
+	}
 	
 	@Produces( { MediaType.APPLICATION_JSON } )
 	@GET
