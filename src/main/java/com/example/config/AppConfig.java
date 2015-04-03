@@ -19,9 +19,8 @@ import com.example.rs.PeopleRestService;
 import com.example.services.PeopleService;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.wordnik.swagger.jaxrs.config.BeanConfig;
-import com.wordnik.swagger.jaxrs.listing.ApiDeclarationProvider;
-import com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON;
-import com.wordnik.swagger.jaxrs.listing.ResourceListingProvider;
+import com.wordnik.swagger.jaxrs.listing.ApiListingResource;
+import com.wordnik.swagger.jaxrs.listing.SwaggerSerializers;
 
 @Configuration
 public class AppConfig {
@@ -37,9 +36,9 @@ public class AppConfig {
 	@Bean @DependsOn( "cxf" )
 	public Server jaxRsServer() {
 		JAXRSServerFactoryBean factory = RuntimeDelegate.getInstance().createEndpoint( jaxRsApiApplication(), JAXRSServerFactoryBean.class );
-		factory.setServiceBeans( Arrays.< Object >asList( peopleRestService(), apiListingResourceJson() ) );
+		factory.setServiceBeans( Arrays.< Object >asList( peopleRestService(), apiListingResource() ) );
 		factory.setAddress( factory.getAddress() );
-		factory.setProviders( Arrays.< Object >asList( jsonProvider(), resourceListingProvider(), apiDeclarationProvider() ) );
+		factory.setProviders( Arrays.< Object >asList( jsonProvider(), swaggerSerializers() ) );
 		return factory.create();
 	}
 	
@@ -47,9 +46,9 @@ public class AppConfig {
 	public BeanConfig swaggerConfig( Environment environment ) {
 		final BeanConfig config = new BeanConfig();
 
-		config.setVersion( "1.0.0" );
-		config.setScan( true );
+		config.setVersion( "1.0.0" );		
 		config.setResourcePackage( Person.class.getPackage().getName() );
+		config.setScan( true );
 		config.setBasePath( 
 			String.format( "http://%s:%s/%s%s",
 				environment.getProperty( SERVER_HOST ),
@@ -63,19 +62,15 @@ public class AppConfig {
 	}
 
 	@Bean
-	public ApiDeclarationProvider apiDeclarationProvider() {
-		return new ApiDeclarationProvider();
+	public SwaggerSerializers swaggerSerializers() {
+		return new SwaggerSerializers();
 	}
 	
 	@Bean
-	public ApiListingResourceJSON apiListingResourceJson() {
-		return new ApiListingResourceJSON();
+	public ApiListingResource apiListingResource() {
+		return new ApiListingResource();
 	}
 	
-	@Bean
-	public ResourceListingProvider resourceListingProvider() {
-		return new ResourceListingProvider();
-	}
 	
 	@Bean 
 	public JaxRsApiApplication jaxRsApiApplication() {
