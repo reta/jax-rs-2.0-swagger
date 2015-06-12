@@ -5,15 +5,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>jax-rs-2.0-swagger</artifactId>
+	<artifactId>jax-rs-2.0-swagger-jersey</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<org.apache.cxf.version>2.7.7</org.apache.cxf.version>
 		<org.springframework.version>3.2.4.RELEASE</org.springframework.version>
-		<org.eclipse.jetty.version>9.0.5.v20130815</org.eclipse.jetty.version>
+		<org.eclipse.jetty.version>9.2.11.v20150529</org.eclipse.jetty.version>
 	</properties>
 
 	<dependencies>
@@ -36,11 +35,29 @@
         </dependency>
 	
 	    <dependency>
-      		<groupId>org.apache.cxf</groupId>
-      		<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-      		<version>${org.apache.cxf.version}</version>
-   		</dependency>
+		    <groupId>org.glassfish.jersey.ext</groupId>
+		    <artifactId>jersey-spring3</artifactId>
+		    <version>2.18</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-server</artifactId>
+		    <version>2.18</version>
+		</dependency>
 
+		<dependency>
+		    <groupId>org.glassfish.jersey.containers</groupId>
+		    <artifactId>jersey-container-jetty-http</artifactId>
+		    <version>2.18</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.glassfish.jersey.containers</groupId>
+		    <artifactId>jersey-container-servlet-core</artifactId>
+			<version>2.18</version>
+		</dependency>
+		
 	    <dependency>
       		<groupId>javax.inject</groupId>
       		<artifactId>javax.inject</artifactId>
@@ -88,6 +105,12 @@
 			<artifactId>jetty-webapp</artifactId>
 			<version>${org.eclipse.jetty.version}</version>		   		   
 		</dependency>		
+		
+		<dependency>
+		    <groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-util</artifactId>
+			<version>${org.eclipse.jetty.version}</version>		   		   
+		</dependency>
 	</dependencies>
 
 	<build>
