@@ -42,8 +42,8 @@ public class Starter {
         swagger.setResourceBase( new ClassPathResource( "/webapp" ).getURI().toString() );
 
  		final HandlerList handlers = new HandlerList();
- 		handlers.addHandler( context );
  		handlers.addHandler( swagger );
+ 		handlers.addHandler( context );
  		
         server.setHandler( handlers );
         server.start();

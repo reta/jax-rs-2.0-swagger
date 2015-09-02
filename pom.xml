@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.apache.cxf.version>2.7.7</org.apache.cxf.version>
 		<org.springframework.version>3.2.4.RELEASE</org.springframework.version>
-		<org.eclipse.jetty.version>9.0.5.v20130815</org.eclipse.jetty.version>
+		<org.eclipse.jetty.version>9.2.11.v20150529</org.eclipse.jetty.version>
 	</properties>
 
 	<dependencies>
